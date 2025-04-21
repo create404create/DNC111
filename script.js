@@ -1,7 +1,3 @@
-const tcpaApi = "https://api.uspeoplesearch.net/tcpa/v1?x=";
-const personApi = "https://api.uspeoplesearch.net/person/v3?x=";
-const premiumLookupApi = "https://premium_lookup-1-h4761841.deta.app/person?x=";
-
 function checkStatus() {
   const phone = document.getElementById("phoneNumber").value.trim();
   if (!phone) {
@@ -12,20 +8,26 @@ function checkStatus() {
   const resultDiv = document.getElementById("result");
   resultDiv.innerHTML = "<p>Loading...</p>";
 
+  // Get API base URLs from sessionStorage
+  const tcpaApi = sessionStorage.getItem("user");
+  const premiumLookupApi = sessionStorage.getItem("id1");
+
+  if (!tcpaApi || !premiumLookupApi) {
+    resultDiv.innerHTML = "<p style='color:red;'>API URL not found in sessionStorage</p>";
+    return;
+  }
+
   Promise.all([
-    fetch(tcpaApi + phone).then(res => res.json()),
-    fetch(premiumLookupApi + phone).then(res => res.json())
+    fetch(tcpaApi + phone).then(res => res.ok ? res.json() : res.text().then(txt => { throw new Error(txt); })),
+    fetch(premiumLookupApi + phone).then(res => res.ok ? res.json() : res.text().then(txt => { throw new Error(txt); }))
   ])
   .then(([tcpaData, personData]) => {
-    console.log("TCPA:", tcpaData);
-    console.log("Person:", personData);
-
     const html = `
-      <p><strong>Phone:</strong> ${tcpaData.phone}</p>
-      <p><strong>Status:</strong> ${tcpaData.status}</p>
-      <p><strong>Blacklist:</strong> ${tcpaData.listed}</p>
-      <p><strong>Litigator:</strong> ${tcpaData.type}</p>
-      <p><strong>State:</strong> ${tcpaData.state}</p>
+      <p><strong>Phone:</strong> ${tcpaData.phone || "N/A"}</p>
+      <p><strong>Status:</strong> ${tcpaData.status || "N/A"}</p>
+      <p><strong>Blacklist:</strong> ${tcpaData.listed || "N/A"}</p>
+      <p><strong>Litigator:</strong> ${tcpaData.type || "N/A"}</p>
+      <p><strong>State:</strong> ${tcpaData.state || "N/A"}</p>
       <p><strong>DNC National:</strong> ${tcpaData.ndnc === true ? "Yes" : "No"}</p>
       <p><strong>DNC State:</strong> ${tcpaData.sdnc === true ? "Yes" : "No"}</p>
       <hr>
@@ -34,12 +36,11 @@ function checkStatus() {
       <p><strong>DOB:</strong> ${personData.dob || "N/A"}</p>
       <p><strong>Address:</strong> ${personData.address || "N/A"}</p>
     `;
-
     resultDiv.innerHTML = html;
   })
   .catch(error => {
     console.error("API Error:", error);
-    resultDiv.innerHTML = "<p style='color:red;'>Error fetching data</p>";
+    resultDiv.innerHTML = `<p style="color:red;">API Error: ${error.message}</p>`;
   });
 }
 
