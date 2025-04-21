@@ -1,88 +1,81 @@
 body {
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(to right, #1c1c1c, #121212);
+  color: #fff;
   margin: 0;
   padding: 0;
-  font-family: 'Fira Code', monospace;
-  background: linear-gradient(135deg, #1f1c2c, #928DAB);
-  color: #fff;
-  overflow: hidden;
+  overflow-x: hidden;
   position: relative;
 }
 
 .background-text {
-  position: fixed;
+  position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  font-family: 'Orbitron', sans-serif;
   font-size: 120px;
+  font-weight: bold;
   color: rgba(255, 255, 255, 0.03);
   z-index: 0;
-  user-select: none;
   pointer-events: none;
+  user-select: none;
+  font-family: monospace;
 }
 
 .container {
-  position: relative;
-  z-index: 2;
-  max-width: 500px;
+  max-width: 450px;
   margin: 100px auto;
-  background: rgba(0, 0, 0, 0.4);
-  padding: 40px;
-  border-radius: 20px;
-  box-shadow: 0 0 25px rgba(0, 0, 0, 0.6);
+  background: rgba(255, 255, 255, 0.05);
+  padding: 35px 30px;
+  border-radius: 15px;
+  box-shadow: 0 0 30px rgba(0,0,0,0.4);
   text-align: center;
+  position: relative;
+  z-index: 1;
 }
 
 input {
   width: 100%;
-  padding: 14px;
-  font-size: 16px;
+  padding: 12px;
+  border-radius: 8px;
   border: none;
-  border-radius: 10px;
-  margin-bottom: 20px;
+  margin-bottom: 15px;
+  font-size: 16px;
 }
 
 button {
-  padding: 12px 25px;
-  background-color: #ffc107;
-  color: #000;
+  background: #ffc107;
   border: none;
+  padding: 10px 18px;
+  margin: 5px;
   font-weight: bold;
   border-radius: 8px;
   cursor: pointer;
-  font-size: 16px;
-  margin: 5px;
+  font-size: 15px;
+  transition: background 0.3s;
 }
 
 button:hover {
-  background-color: #e0a800;
+  background: #e0a800;
 }
 
 .result-box {
   margin-top: 25px;
-  background-color: rgba(255, 255, 255, 0.1);
   padding: 20px;
-  border-radius: 12px;
+  background-color: rgba(255,255,255,0.1);
+  border-radius: 10px;
   text-align: left;
-  font-size: 15px;
-}
-
-.copy-btn {
-  background-color: #17c3b2;
-  color: #000;
-}
-
-.copy-btn:hover {
-  background-color: #10b2a1;
+  white-space: pre-line;
 }
 
 .footer {
   margin-top: 20px;
   font-size: 14px;
+  color: #bbb;
 }
 
-.footer a {
-  color: #ffd700;
-  text-decoration: none;
+.creator {
   font-weight: bold;
+  color: #ffc107;
+  font-family: cursive;
 }
