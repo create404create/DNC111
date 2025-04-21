@@ -1,0 +1,74 @@
+body, html {
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', sans-serif;
+  color: #fff;
+  height: 100%;
+}
+
+.codex-background {
+  min-height: 100vh;
+  background: linear-gradient(to right, #1a2a6c, #b21f1f, #fdbb2d);
+  background-image: url("https://www.transparenttextures.com/patterns/codex.png");
+  background-repeat: repeat;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  background-color: rgba(0, 0, 0, 0.7);
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.5);
+  text-align: center;
+  width: 90%;
+  max-width: 450px;
+}
+
+input {
+  width: 100%;
+  padding: 12px;
+  border-radius: 8px;
+  border: none;
+  margin-bottom: 15px;
+  font-size: 16px;
+}
+
+button {
+  background: #ffc107;
+  border: none;
+  padding: 12px 20px;
+  font-weight: bold;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  margin: 5px;
+}
+
+button:hover {
+  background: #e0a800;
+}
+
+.result-box {
+  margin-top: 20px;
+  padding: 15px;
+  background: rgba(255,255,255,0.1);
+  border-radius: 10px;
+  text-align: left;
+}
+
+footer {
+  margin-top: 20px;
+  color: #fff;
+  font-size: 18px;
+  text-align: center;
+  padding: 15px;
+}
+
+.signature {
+  font-family: 'Courier New', Courier, monospace;
+  font-style: italic;
+  color: #ffeb3b;
+}
